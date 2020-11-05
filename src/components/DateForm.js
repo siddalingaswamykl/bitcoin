@@ -4,7 +4,6 @@ import axios from 'axios';
 const DateForm = () => {
     const [startDate, setStartDate] = useState('2020-11-01');
     const [endDate, setEndDate] = useState('2020-11-02');
-    //const [sub, setSub] = useState('');
     const [resp, setResp] = useState({});
 
     const filterval = (val)=>{

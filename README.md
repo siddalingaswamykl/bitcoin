@@ -1,3 +1,16 @@
+API information for the Bitcoin price information: 
+
+Bitcoin prices are fetched using the free API resource - https://api.coindesk.com/v1/bpi/historical/close.json
+
+App Setup: 
+
+1) download this package
+2) use npm install 
+3) npx react-scripts start 
+
+you will be seeing the App in the browser. 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
