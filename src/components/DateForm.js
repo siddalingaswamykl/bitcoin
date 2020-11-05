@@ -92,35 +92,36 @@ const DateForm = () => {
 
     return (
         <div className="ui segement">
-            <h2> Select Date Range for the Bit coin Price:</h2>
-            <div className="ui form">
-            <div className="field">
-                <label htmlFor="startDate">Enter Start Date</label>
-                <input 
-                    id="startDate"
-                    type="date"
-                    value={startDate}
-                    min={Pastdate()} max={Nowdate()}
-                    onChange={(event) => { console.log(event.target.value); 
-                        setStartDate(event.target.value)}}
-                />
-            </div>
-            <div className="field">
-                <label htmlFor="endDate">Enter End Date</label>
-                <input 
-                    id="endDate"
-                    type="date"
-                    value={endDate}
-                    min={Pastdate()} max={Nowdate()}
-                    onChange={(event) => setEndDate(event.target.value)}
-                />
-            </div>
-            <button className="positive ui button" onClick={onsubmits}>Submit</button>
+            <p> Select Date Range for the Bit coin Price:</p>
+            <div className="ui form grid ">
+                <div className="five wide column">
+                    <label htmlFor="startDate">Enter Start Date</label>
+                    <input 
+                        id="startDate"
+                        type="date"
+                        value={startDate}
+                        min={Pastdate()} max={Nowdate()}
+                        onChange={(event) => { console.log(event.target.value); 
+                            setStartDate(event.target.value)}}
+                    />
+                </div>
+                <div className="five wide column">
+                    <label htmlFor="endDate">Enter End Date</label>
+                    <input 
+                        id="endDate"
+                        type="date"
+                        value={endDate}
+                        min={Pastdate()} max={Nowdate()}
+                        onChange={(event) => setEndDate(event.target.value)}
+                    />
+                </div>
+                <div className="three wide column middle aligned">
+                    <button className="positive ui button" onClick={onsubmits}>Submit</button>
+                </div>
             </div>
             <div className="ui segment data">
-                
-                
-                <table class="ui celled table">
+                <p>Bit Coin Information: </p>
+                <table className="ui celled table">
                     <thead>
                         <tr><th>Date</th>
                         <th>BitCoin Price</th>
@@ -128,7 +129,7 @@ const DateForm = () => {
                     </tr></thead>
                     <tbody>
                     {resp && resp.bpdata && resp.bpdata.map((dat) =>{
-                       return ( <tr>
+                       return ( <tr key={dat.toString()}> 
                             <td data-label="date">{dat[0]}</td>
                             <td data-label="price">${dat[1]}</td>
                             <td data-label="prime">{isPrime(filterval(dat[1]))}</td>
