@@ -2,8 +2,8 @@ import React, { useState, useEffect} from "react";
 import axios from 'axios';
 
 const DateForm = () => {
-    const [startDate, setStartDate] = useState('2020-11-01');
-    const [endDate, setEndDate] = useState('2020-11-02');
+    const [startDate, setStartDate] = useState('2020-11-05');
+    const [endDate, setEndDate] = useState('2020-11-06');
     const [resp, setResp] = useState({});
 
     const filterval = (val)=>{
@@ -49,6 +49,21 @@ const DateForm = () => {
             end: endDate
         });
     } 
+
+    // formate the Date value
+    const Dateformat = (dat)=>{
+        var d = new Date(dat),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+
+        return [day, month, year].join('-');
+    }
 
     //To restrict the date field to 6 months
     const Nowdate = ()=>{
@@ -100,6 +115,7 @@ const DateForm = () => {
                         type="date"
                         value={startDate}
                         min={Pastdate()} max={Nowdate()}
+                        date-format="MM-DD-YYYY"
                         onChange={(event) => { console.log(event.target.value); 
                             setStartDate(event.target.value)}}
                     />
@@ -111,6 +127,7 @@ const DateForm = () => {
                         type="date"
                         value={endDate}
                         min={Pastdate()} max={Nowdate()}
+                        date-format="MM-DD-YYYY"
                         onChange={(event) => setEndDate(event.target.value)}
                     />
                 </div>
@@ -129,7 +146,7 @@ const DateForm = () => {
                     <tbody>
                     {resp && resp.bpdata && resp.bpdata.map((dat) =>{
                        return ( <tr key={dat.toString()}> 
-                            <td data-label="date">{dat[0]}</td>
+                            <td data-label="date">{Dateformat(dat[0])}</td>
                             <td data-label="price">${dat[1]}</td>
                             <td data-label="prime">{isPrime(filterval(dat[1]))}</td>
                         </tr> )
